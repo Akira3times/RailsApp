@@ -7,11 +7,11 @@
 
 <code class="language-markup">
 <pre>
-rails generate controller home top
+$ rails generate controller home top
 </pre>
 </code>
 
-<h2>【Rails】ローカルでテストする方法</h2>
+<h2>【Rails】トップページを編集する方法</h2>
 <p>ビューファイル</p>
 
 <code class="language-markup">
@@ -57,7 +57,7 @@ end
 <p>ターミナルを立ち上げ、アプリケーションサーバを起動する</p>
 <code class="language-markup">
 <pre>
-rails s
+$ rails s
 </pre>   
 </code>
 
@@ -74,52 +74,129 @@ http://localhost:3000/
 <p>ターミナルを立ち上げ、gitでコミットする</p>
 <code class="language-markup">
 <pre>
-git add .
-git commit -m "update heroku"  
+$ git add .
+$ git commit -m "update heroku"  
 </pre>
 </code>
 <p>gitへプッシュする</p>
 <code class="language-markup">
 <pre>
-git push origin master 
+$ git push origin master 
 </pre>
 </code>
 
 <p>herokuへプッシュする</p>
 <code class="language-markup">
 <pre>
-git push heroku master 
+$ git push heroku master 
 </pre>
 </code>
 
 
-<h2>【Rails】データベースの中身を確認する方法</h2>
+<h2>【Rails】データベースを作成する方法</h2>
 
-<p>コマンドでデータベースのコンソールを立ち上げる</p>
+<p>ターミナルを立ち上げて、データベースを作成する</p>
+
 <code class="language-markup">
-<pre> rails dbconsole</pre>
+<pre>
+$ rails g model Post content:text
+$ rails db:migrate
+</pre>
+</code>
+
+<h2>【Rails】データベースの内容を確認する方法</h2>
+
+<p>コマンドでデータベースのRailsコンソールを立ち上げる</p>
+<code class="language-markup">
+<pre>
+$ rails dbconsole</pre>
 </code>
 <p>テーブルの一覧を表示</p>
 <code class="language-markup">
 <pre>
-.tables
+sqlite> .tables
 </pre>
 </code>
-<p>テーブルの構造（カラムなど）を表示</p>
+<p>テーブル「posts」の構造（カラムなど）を表示</p>
 <code class="language-markup">
 <pre>
-.schema posts
+sqlite> .schema posts
 </pre>
 </code>
-<p>テーブルの中身を確認</p>
+<p>テーブル「posts」の中身を確認</p>
 <code class="language-markup">
 <pre>
-select * from posts;
+sqlite> select * from posts;
 </pre>
 </code>
+
 <p>コンソールを終了</p>
 <code class="language-markup">
 <pre>
-.quit
+sqlite> .quit
 </pre>
 </code>
+
+
+<h2>【Rails】データベースの内容を追加する方法</h2>
+
+<p>rails consoleを立ち上げてテーブル「posts」にデータを追加する/p>
+<code class="language-markup">
+<pre>
+$ rails console
+</pre>
+コンソールが立ち上がったら、データを追加する。
+</code>
+<code class="language-markup">
+<pre>
+irb(main):> post1 = Post.new(content: "I work today")
+irb(main):> post1.save
+</pre>
+</code>
+
+登録済みのデータ(ID＝1）を変更する。
+</code>
+<code class="language-markup">
+<pre>
+irb(main):> post = Post.find(1)
+irb(main):> post.content = "I stay home today"
+irb(main):> post.save
+</pre>
+</code>
+
+<p>コンソールを終了</p>
+<code class="language-markup">
+<pre>
+irb(main):> exit
+</pre>
+</code>
+
+
+<h2>【Rails】データベースを使ってWebに表示させる方法</h2>
+
+<p>home_controller.rbを編集する。</p>
+<p>postsの配列にPostデータベースの内容を全てロードする。</p>
+<code class="language-markup">
+<pre>
+class HomeController < ApplicationController
+  def top
+    @posts=Post.all
+  end
+end
+</pre>
+</code>
+
+<code class="language-markup">
+<pre>
+&lt;% @posts.each do |post| %&gt;
+    &lt;div class="posts-index-item"&gt;
+    &lt;%= post.content %&gt;
+    &lt;/div&gt;
+&lt;% end %&gt;
+</pre>
+</code>
+<% @posts.each do |post| %>
+    <div class="posts-index-item">
+    <%= post.content %>
+    </div>
+<% end %>
