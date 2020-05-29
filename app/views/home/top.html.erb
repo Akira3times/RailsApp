@@ -6,31 +6,49 @@
 <h2>【Rails】トップページを自動生成する方法</h2>
 
 <code class="language-markup">
+<pre>
 rails generate controller home top
+</pre>
 </code>
 
 <h2>【Rails】ローカルでテストする方法</h2>
 <p>ビューファイル</p>
 
 <code class="language-markup">
+<pre>
 app/views/home/top.html.erb
+</pre>
 </code>
+
+<p>CSSファイル</p>
+<code class="language-markup">
+<pre>
+app/assets/stylesheets/home.scss 
+</pre>
+</code>
+
 
 <p>コントローラファイル</p>
 <code class="language-markup">
-app/controllers/home_controller.rb 
+<pre>
+app/controllers/home_controller.rb
+</pre> 
 </code>
 
 <p>ルーティングファイル</p>
 <code class="language-markup">
+<pre>
 config/routes.rb 
+</pre>
 </code>
+
 <p>ルーティングファイルの記述を変更してtopページを設定する。</p>
 <code class="language-markup">
-Rails.application.routes.draw do<br>
-  root 'home#top'<br>
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html<br>
-end<br>
+<pre>
+Rails.application.routes.draw do
+root 'home#top'
+end
+</pre>
 </code>
 
 
@@ -38,12 +56,16 @@ end<br>
 
 <p>ターミナルを立ち上げ、アプリケーションサーバを起動する</p>
 <code class="language-markup">
-rails s   
+<pre>
+rails s
+</pre>   
 </code>
 
 <p>ブラウザでlocalhost:3000というドメインにアクセス</p>
 <code class="language-markup">
+<pre>
 http://localhost:3000/
+</pre>
 </code>
 
 
@@ -51,40 +73,53 @@ http://localhost:3000/
 
 <p>ターミナルを立ち上げ、gitでコミットする</p>
 <code class="language-markup">
-    git add .<br>   
-</code>
-<code class="language-markup">
+<pre>
+    git add .
     git commit -m "update heroku"  
+</pre>
 </code>
 <p>gitへプッシュする</p>
 <code class="language-markup">
+<pre>
     git push origin master 
+</pre>
 </code>
 
 <p>herokuへプッシュする</p>
 <code class="language-markup">
+<pre>
     git push heroku master 
+</pre>
 </code>
 
 
 <h2>【Rails】データベースの中身を確認する方法</h2>
+
 <p>コマンドでデータベースのコンソールを立ち上げる</p>
 <code class="language-markup">
-    rails dbconsole
+<pre> rails dbconsole</pre>
 </code>
 <p>テーブルの一覧を表示</p>
 <code class="language-markup">
+<pre>
 .tables
+</pre>
 </code>
 <p>テーブルの構造（カラムなど）を表示</p>
 <code class="language-markup">
+<pre>
 .schema posts
+</pre>
 </code>
 <p>テーブルの中身を確認</p>
 <code class="language-markup">
+<pre>
 select * from posts;
+</pre>
 </code>
 <p>コンソールを終了</p>
 <code class="language-markup">
+<pre>
 .quit
+</pre>
 </code>
