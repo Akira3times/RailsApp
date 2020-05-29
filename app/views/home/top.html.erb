@@ -1,3 +1,27 @@
 <h1>Home#top</h1>
 <p>Find me in app/views/home/top.html.erb</p>
 <p>デプロイできたぞ！</p>
+
+
+
+<p>【Rails】データベースの中身を確認する方法</p>
+<p>コマンドでデータベースのコンソールを立ち上げる</p>
+<code class="language-markup">
+    rails dbconsole
+</code>
+<p>テーブルの一覧を表示</p>
+<code class="language-markup">
+.tables
+</code>
+<p>テーブルの構造（カラムなど）を表示</p>
+<code class="language-markup">
+.schema posts
+</code>
+<p>テーブルの中身を確認</p>
+<code class="language-markup">
+select * from posts;
+</code>
+<p>コンソールを終了</p>
+<code class="language-markup">
+.quit
+</code>
