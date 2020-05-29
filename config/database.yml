@@ -20,9 +20,16 @@ test:
   <<: *default
   database: db/test.sqlite3
 
-production:
+#production:
 #半角スペース２個分の空白を開ける
+#  <<: *default
+#  adapter: postgresql
+#  encoding: unicode
+#  pool: 5
+
+production:
   <<: *default
   adapter: postgresql
-  encoding: unicode
-  pool: 5
+  database: db/production.postgresql
+  url: <%= ENV['postgres://tvogcdpzuseczp:4b4b2ad6b4ff27836f85390fa2d7f666e41928db4acf1d4e151ad22f9fddb7d5@ec2-54-165-36-134.compute-1.amazonaws.com:5432/d4ceus3tj1vmnl'] %>
+
