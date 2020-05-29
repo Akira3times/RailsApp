@@ -3,8 +3,71 @@
 <p>デプロイできたぞ！</p>
 
 
+<h2>【Rails】トップページを自動生成する方法</h2>
 
-<p>【Rails】データベースの中身を確認する方法</p>
+<code class="language-markup">
+rails generate controller home top
+</code>
+
+<h2>【Rails】ローカルでテストする方法</h2>
+<p>ビューファイル</p>
+
+<code class="language-markup">
+app/views/home/top.html.erb
+</code>
+
+<p>コントローラファイル</p>
+<code class="language-markup">
+app/controllers/home_controller.rb 
+</code>
+
+<p>ルーティングファイル</p>
+<code class="language-markup">
+config/routes.rb 
+</code>
+<p>ルーティングファイルの記述を変更してtopページを設定する。</p>
+<code class="language-markup">
+Rails.application.routes.draw do<br>
+  root 'home#top'<br>
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html<br>
+end<br>
+</code>
+
+
+<h2>【Rails】ローカルでテストする方法</h2>
+
+<p>ターミナルを立ち上げ、アプリケーションサーバを起動する</p>
+<code class="language-markup">
+rails s   
+</code>
+
+<p>ブラウザでlocalhost:3000というドメインにアクセス</p>
+<code class="language-markup">
+http://localhost:3000/
+</code>
+
+
+<h2>【Rails】gitを使用してherokuへデプロイをする方法</h2>
+
+<p>ターミナルを立ち上げ、gitでコミットする</p>
+<code class="language-markup">
+    git add .<br>   
+</code>
+<code class="language-markup">
+    git commit -m "update heroku"  
+</code>
+<p>gitへプッシュする</p>
+<code class="language-markup">
+    git push origin master 
+</code>
+
+<p>herokuへプッシュする</p>
+<code class="language-markup">
+    git push heroku master 
+</code>
+
+
+<h2>【Rails】データベースの中身を確認する方法</h2>
 <p>コマンドでデータベースのコンソールを立ち上げる</p>
 <code class="language-markup">
     rails dbconsole
