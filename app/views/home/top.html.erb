@@ -276,6 +276,19 @@ $ heroku pg:psql
 </pre>
 </code>
 
+<code class="language-markup">
+<pre>
+app::DATABASE=> \d
+app::DATABASE=> \d posts
+app::DATABASE=> select * from posts;
+新しいレコードを新規生成
+app::DATABASE=> INSERT INTO posts(id,content,created_at,updated_at) VALUES(1, 'first data','2020-05-29 14:02:13.008749','2020-05-29 14:02:13.008749');
+app::DATABASE=> select * from posts;
+既存のレコードを更新する。
+app::DATABASE=> update posts set content='holiday' where id=1;
+app::DATABASE=> select * from posts;
+</pre>
+</code>
 
 
 
