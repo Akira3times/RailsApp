@@ -89,6 +89,7 @@ $ git push origin master
 <code class="language-markup">
 <pre>
 $ git push heroku master 
+$ heroku run rake db:migrate
 </pre>
 </code>
 
@@ -186,6 +187,9 @@ end
 </pre>
 </code>
 
+<p>app/views/home/top.html.erbを編集する。</p>
+<p>each doを使ってデータベースのcontentを全て表示させる。</p>
+<p>HTML常にRailsを使用する場合は&lt;%----%&gt;が必要</p>
 <code class="language-markup">
 <pre>
 &lt;% @posts.each do |post| %&gt;
@@ -202,6 +206,77 @@ end
 <p>本番環境のデータベースをSQLiteをPostgreSQLに変える。</p>
 <p>本番環境でPostgleSQLを使用するよう設定する。</p>
 <p>database.ymlを設定する。</p>
+
+<code class="language-markup">
+<pre>
+  &lt;&lt;: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+</pre>
+</code>
+<p>PostgreSQLのバージョンを確認する</p>
+<code class="language-markup">
+<pre>
+$ heroku pg:info
+</pre>
+</code>
+<p>PostgreSQL インストール</p>
+<p>herokuのデータベースのバージョンを確認する。</p>
+<code class="language-markup">
+<pre>
+$ heroku pg:info   
+</pre>
+</code>
+<p>HPから同じバージョンをダウンロードする。</p>
+<p>.bash_profileにPATHを通す</p>
+<code class="language-markup">
+<pre>
+$ vi ~/.bash_profile
+</pre>
+</code>
+
+<p>pathを追加して保存する。</p>
+<code class="language-markup">
+<pre>
+export PATH=$PATH:/Library/PostgreSQL/12/bin
+</pre>
+</code>
+
+<p>PATHを反映させる。</p>
+<code class="language-markup">
+<pre>
+$ source .bash_profile
+$ echo $PATH
+</pre>
+</code>
+
+
+<p>psqlが実行できるか確認する。</p>
+<code class="language-markup">
+<pre>
+$ psql -V
+</pre>
+</code>
+
+
+<p>heroku上のPostgresに接続します。</p>
+<p>リポジトリのあるフォルダに移動する。</p>
+<p>herokuとgitが紐づいていることを確認する。</p>
+<code class="language-markup">
+<pre>
+$ git remote -v
+</pre>
+</code>
+
+<p>herokuのデータベースに接続する。</p>
+<code class="language-markup">
+<pre>
+$ heroku pg:psql
+</pre>
+</code>
+
+
 
 
 <% @posts.each do |post| %>
