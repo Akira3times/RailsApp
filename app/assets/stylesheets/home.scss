@@ -9,8 +9,54 @@ pre {
     padding-left: 20px;
 }
 
+body {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: navy;
+}
+
+li {
+    list-style: none;
+    float: left;
+    padding: 20px 20px;
+}
+
+header {
+    height: 80px;
+    width: 100%;
+    background-color: gainsboro;
+    color: navy;
+    position: fixed;
+}
+
+.main {
+    padding-top: 80px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.header-logo {
+    float: left;
+    padding: 20px;
+    font-size: 30px;
+    font-weight: 600;
+}
+
 .posts-index-item {
     background-color: rgb(178, 210, 231);
     overflow: hidden;
     box-shadow: 0 2px 6px #c1ced7;
+}
+
+table {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+td {
+    padding: 5px;
+    border: 1px solid black;
 }

@@ -10,6 +10,8 @@
 $ rails generate controller home top
 </pre>
 </code>
+次回以降、ページを追加する場合は上記コマンドが使用できない。
+新規でページを作成し、ルーティングとアクションを追加する。
 
 <h2>【Rails】トップページを編集する方法</h2>
 <p>ビューファイル</p>
@@ -35,6 +37,22 @@ app/controllers/home_controller.rb
 </pre> 
 </code>
 
+<p>コントローラの記述を変更してページを設定する。</p>
+<code class="language-markup">
+<pre>
+class HomeController < ApplicationController
+  def top
+    @posts=Post.all
+  end
+  def rails
+    @posts=Post.all
+  end
+end
+ここではtopページとrailsページが設定されている。
+そしてデータベースのPostの中身を各ページで読みさせるように設定している。
+</pre>
+</code>
+
 <p>ルーティングファイル</p>
 <code class="language-markup">
 <pre>
@@ -42,15 +60,16 @@ config/routes.rb
 </pre>
 </code>
 
-<p>ルーティングファイルの記述を変更してtopページを設定する。</p>
+<p>ルーティングファイルの記述を変更してページを設定する。</p>
 <code class="language-markup">
 <pre>
 Rails.application.routes.draw do
-root 'home#top'
+    root 'home#top'
+    get "rails" => "home#rails"
 end
+ここではアクセスした時のホーム画面とrailsページを設定している。
 </pre>
 </code>
-
 
 <h2>【Rails】ローカルでテストする方法</h2>
 
@@ -287,13 +306,38 @@ app::DATABASE=> select * from posts;
 既存のレコードを更新する。
 app::DATABASE=> update posts set content='holiday' where id=1;
 app::DATABASE=> select * from posts;
+新しいレコードを新規生成(タイムスタンプ自動生成)
+INSERT INTO posts(id,content,created_at,updated_at) VALUES(3, 'go shopping',current_timestamp,current_timestamp);
 </pre>
 </code>
 
 
+<br>
 
-<% @posts.each do |post| %>
-    <div class="posts-index-item">
-    <%= post.content %>
-    </div>
-<% end %>
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">The posts tables</th>
+        </tr>
+    </thead>
+    <tbody>
+                <tr class="posts-data">
+                    <td>- id -</td>
+                    <td>- content -</td>
+                    <td>- create -</td>
+                    <td>- update -</td>
+                </tr>
+            <% @posts.each do |post| %>
+                <div class="posts-index-item">
+                <tr>
+                    <td><%= post.id %></td>
+                    <td><%= post.content %></td>
+                    <td><%= post.created_at %></td>
+                    <td><%= post.updated_at %></td>
+                </tr>
+                </div>
+            <% end %>        
+        
+    </tbody>
+</table>
+

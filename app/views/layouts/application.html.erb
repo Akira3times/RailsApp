@@ -10,6 +10,26 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <div class="header-logo">
+        <a>STAY HOME</a>
+      </div>
+
+      <div class="header-list">
+        <ul>
+          <li><a href="/">ホーム</a></li>
+          <li><a href="/">HTML&CSS</a></li>
+          <li><a href="/rails">Rails</a></li>
+          <li><a href="/">Python</a></li>
+          <li><a href="/">Swift</a></li>
+        </ul>
+      </div>
+
+    </header>
+
+    <div class="main">
+      <%= yield %>
+    </div>
+
   </body>
 </html>
