@@ -113,7 +113,7 @@ $ heroku run rake db:migrate
 </code>
 
 
-<h2>【Rails】データベースを作成する方法</h2>
+<h2>【Rails】データベースを作成/追加する方法</h2>
 
 <p>ターミナルを立ち上げて、データベースを作成する</p>
 
@@ -123,6 +123,17 @@ $ rails g model Post content:text
 $ rails db:migrate
 </pre>
 </code>
+
+<p>ターミナルを立ち上げて、カラム(項目)の追加</p>
+
+<code class="language-markup">
+<pre>
+$rails generate migration AddUserToPosts user:string
+$ rails db:migrate
+rails generate migration Addカラム名Toテーブル名 カラム名:データ型
+</pre>
+</code>
+
 
 <h2>【Rails】データベースの内容を確認する方法</h2>
 
@@ -314,6 +325,10 @@ INSERT INTO posts(id,content,created_at,updated_at) VALUES(3, 'go shopping',curr
 
 <br>
 
+
+<%= link_to("new data", "/home/new") %>
+
+
 <table>
     <thead>
         <tr>
@@ -323,6 +338,7 @@ INSERT INTO posts(id,content,created_at,updated_at) VALUES(3, 'go shopping',curr
     <tbody>
                 <tr class="posts-data">
                     <td>- id -</td>
+                    <td>- user -</td>
                     <td>- content -</td>
                     <td>- create -</td>
                     <td>- update -</td>
@@ -330,14 +346,86 @@ INSERT INTO posts(id,content,created_at,updated_at) VALUES(3, 'go shopping',curr
             <% @posts.each do |post| %>
                 <div class="posts-index-item">
                 <tr>
-                    <td><%= post.id %></td>
+                    <td><%= link_to(post.id, "/home/#{post.id}/1/1") %></td>
+                    <td><%= post.user %></td>
                     <td><%= post.content %></td>
                     <td><%= post.created_at %></td>
                     <td><%= post.updated_at %></td>
+
                 </tr>
                 </div>
             <% end %>        
         
     </tbody>
 </table>
+
+
+
+<h2>URLからidを取得する。</h2>
+
+
+<p>routes.rbにルーティングを追加</p>
+<p>ルーティングのURL部分に「:」を用いて「home/:id」と指定することで、</p>
+<p>「/home/1」でも「/home/10」でもshowアクションに飛ぶ。</p>
+<code class="language-markup">
+<pre>
+  get "home/:id" => "home#show"
+</pre>
+</code>
+<p>複数のパラメータを設定する場合は</p>
+<code class="language-markup">
+<pre>
+  get "home/:id/:upper/:lower" => "home#show"
+</pre>
+</code>
+
+
+<p>home_comtroller.rbにコントローラを追加</p>
+<p>URLの「:id」の値を取得する</p>
+<code class="language-markup">
+<pre>
+  def show
+    @id=params[:id]
+  end
+</pre>
+</code>
+
+<p>複数のパラメータを設定する場合は</p>
+<code class="language-markup">
+<pre>
+  def show
+    @id=params[:id]
+    @upper = params[:upper]
+    @lower = params[:lower]
+  end
+</pre>
+</code>
+
+
+<p>app/views/home/にshoww.html.erbを作成。</p>
+<code class="language-markup">
+<pre>
+  &lt;%= @id %&gt;
+</pre>
+</code>
+
+<p>複数のパラメータを設定する場合は</p>
+<code class="language-markup">
+<pre>
+  &lt;%= @id %&gt;
+  &lt;%= @upper %&gt;
+  &lt;%= @lower %&gt;
+</pre>
+</code>
+
+<p>ブラウザからhttp://localhost:3000/home/1/1/1にアクセスするとページが表示される。</p>
+
+<p>HP内にリンクを貼るには</p>
+<code class="language-markup">
+<pre>
+  &lt;%= link_to("LINK to ID:1", "/home/1/1/1") %&gt;
+</pre>
+</code>
+
+
 

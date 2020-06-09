@@ -3,5 +3,13 @@ Rails.application.routes.draw do
 
   get "rails" => "home#rails"
 
+  get "home/new" => "home#new"
+
+  post "home/create" => "home#create"
+
+  post "home/destroy" => "home#destroy"
+
+  get "home/:id/:upper/:lower" => "home#show"
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
