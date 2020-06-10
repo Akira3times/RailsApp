@@ -15,7 +15,6 @@ class HomeController < ApplicationController
   @posts=Post.find_by(id:params[:id])
   @post.user = (params[:user])
   @post.content = (params[:content])
-  @post.save
   redirect_to("/new")
  end
  
