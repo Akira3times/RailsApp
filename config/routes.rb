@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   get "new" => "home#new"
 
   post "home/update" => "home#update"
+  
+  post "home/create" => "home#create"
 
-#  post "home/destroy" => "home#destroy"
+  #  post "home/destroy" => "home#destroy"
 
 #  get "home/:id/:upper/:lower" => "home#show"
 
