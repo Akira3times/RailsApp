@@ -26,8 +26,6 @@ class HomeController < ApplicationController
   
   def show
     @id=params[:id]
-    @upper = params[:upper]
-    @lower = params[:lower]
     @posts=Post.find_by(id:params[:id])
   end
 
