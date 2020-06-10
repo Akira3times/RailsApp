@@ -12,9 +12,10 @@ class HomeController < ApplicationController
   end
   
  def update
-  @posts=Post.find_by(id:params[:id])
+  @post =Post.find_by(id:params[:id])
   @post.user = (params[:user])
   @post.content = (params[:content])
+  @post.save
   redirect_to("/new")
  end
  
