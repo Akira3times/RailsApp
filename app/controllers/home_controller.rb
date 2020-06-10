@@ -16,7 +16,7 @@ class HomeController < ApplicationController
   @post.user = (params[:user])
   @post.content = (params[:content])
   @post.save
-  redirect_to("/")
+  redirect_to("/new")
  end
  
   def show
