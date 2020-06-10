@@ -13,6 +13,7 @@ class HomeController < ApplicationController
   
  def create
   @post =Post.new(user:"new")
+  @post.save
     redirect_to("/new")
  end
   

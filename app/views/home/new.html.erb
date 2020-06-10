@@ -32,3 +32,34 @@
     </div>
 </div>
 <% end %>
+
+
+database:
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">The posts tables</th>
+        </tr>
+    </thead>
+    <tbody>
+                <tr class="posts-data">
+                    <td>- id -</td>
+                    <td>- user -</td>
+                    <td>- content -</td>
+                    <td>- create -</td>
+                    <td>- update -</td>
+                </tr>
+            <% @posts.each do |post| %>
+                <div class="posts-index-item">
+                <tr>
+                    <td><%= link_to(post.id, "/show/#{post.id}") %></td>
+                    <td><%= post.user %></td>
+                    <td><%= post.content %></td>
+                    <td><%= post.created_at %></td>
+                    <td><%= post.updated_at %></td>
+                </tr>
+                </div>
+            <% end %>        
+        
+    </tbody>
+</table>
