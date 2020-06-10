@@ -324,7 +324,7 @@ INSERT INTO posts(id,content,created_at,updated_at) VALUES(3, 'go shopping',curr
 
 
 
-table>
+<table>
     <thead>
         <tr>
             <th colspan="2">The posts tables</th>
@@ -341,12 +341,11 @@ table>
             <% @posts.each do |post| %>
                 <div class="posts-index-item">
                 <tr>
-                    <td><%= link_to(post.id, "/post/#{post.id}/") %></td>
+                    <td><%= post.id %></td>
                     <td><%= post.user %></td>
                     <td><%= post.content %></td>
                     <td><%= post.created_at %></td>
                     <td><%= post.updated_at %></td>
-
                 </tr>
                 </div>
             <% end %>        
