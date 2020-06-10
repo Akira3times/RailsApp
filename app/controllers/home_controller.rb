@@ -8,8 +8,13 @@ class HomeController < ApplicationController
   end
 
   def new
-
+    @posts=Post.all
   end
+  
+ def create
+  @post =Post.new(user:"new")
+    redirect_to("/new")
+ end
   
  def update
   @post =Post.find_by(id:params[:id])

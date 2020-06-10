@@ -5,6 +5,17 @@
 <p>Find me in app/views/home/new.html.erb</p>
 <p>デプロイできたぞ！</p>
 
+
+ <%= form_tag("/home/create") do %>
+ Cleate ID
+ <div class="form">
+        <input type="submit" value="new id">
+    </div>
+</div>
+<% end %>
+
+
+
  <%= form_tag("/home/update") do %>
  Update Current Data
  <div class="form">
