@@ -11,19 +11,14 @@ class HomeController < ApplicationController
 
   end
   
-# def create
-#    @post = Post.new(user: params[:user])
-#    @post.content = (params[:content])
-#    @post.save
-#    redirect_to("/")
-#  end
-
-#  def destroy
-#    Post.find(params[:id]).destroy
-#    redirect_to("/")
-#  end
-
-  
+ def update
+  @posts=Post.find_by(id:params[:id])
+  @post.user = (params[:user])
+  @post.content = (params[:content])
+  @post.save
+  redirect_to("/")
+ end
+ 
   def show
     @id=params[:id]
     @posts=Post.find_by(id:params[:id])
