@@ -323,39 +323,4 @@ INSERT INTO posts(id,content,created_at,updated_at) VALUES(3, 'go shopping',curr
 </code>
 
 
-<br>
-
-
-<%= link_to("new data", "/home/new") %>
-
-
-<table>
-    <thead>
-        <tr>
-            <th colspan="2">The posts tables</th>
-        </tr>
-    </thead>
-    <tbody>
-                <tr class="posts-data">
-                    <td>- id -</td>
-                    <td>- user -</td>
-                    <td>- content -</td>
-                    <td>- create -</td>
-                    <td>- update -</td>
-                </tr>
-            <% @posts.each do |post| %>
-                <div class="posts-index-item">
-                <tr>
-                    <td><%= link_to(post.id, "/home/#{post.id}/1/1") %></td>
-                    <td><%= post.user %></td>
-                    <td><%= post.content %></td>
-                    <td><%= post.created_at %></td>
-                    <td><%= post.updated_at %></td>
-
-                </tr>
-                </div>
-            <% end %>        
-        
-    </tbody>
-</table>
 
